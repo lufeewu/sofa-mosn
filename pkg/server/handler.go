@@ -22,6 +22,7 @@ import (
 	"context"
 	"crypto/rand"
 	"fmt"
+	"github.com/alipay/sofa-mosn/pkg/admin"
 	"net"
 	"os"
 	"reflect"
@@ -203,6 +204,7 @@ func (ch *connHandler) AddOrUpdateListener(lc *v2.Listener, networkFiltersFactor
 		ch.listeners = append(ch.listeners, al)
 	}
 
+	admin.SetListenerConfig(listenerName, lc)
 	return al, nil
 }
 

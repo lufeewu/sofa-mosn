@@ -18,6 +18,7 @@
 package main
 
 import (
+	"github.com/alipay/sofa-mosn/pkg/admin"
 	"net/http"
 	_ "net/http/pprof"
 
@@ -55,6 +56,8 @@ var (
 			serviceCluster := c.String("service-cluster")
 			serviceNode := c.String("service-node")
 			conf := config.Load(configPath)
+			// start admin server
+			admin.Start(&conf)
 			mosn.Start(conf, serviceCluster, serviceNode)
 			return nil
 		},
